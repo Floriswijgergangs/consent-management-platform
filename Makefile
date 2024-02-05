@@ -83,7 +83,7 @@ install:
 	make data-migration
 
 install-composer:
-	docker exec cmp-app composer install --no-interaction --no-ansi --prefer-dist --no-progress --optimize-autoloader
+	docker exec cmp-app composer install --no-interaction --no-ansi --prefer-dist --no-progress --optimize-autoloader && chmod -R 775 vendor
 
 install-assets:
 	docker exec cmp-app yarn install --no-progress --non-interactive
