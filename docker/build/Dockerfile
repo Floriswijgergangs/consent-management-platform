@@ -34,6 +34,8 @@ FROM 68publishers/php:8.1-unit-prod-2.2.0 as app
 
 WORKDIR /var/www/html
 
+RUN chmod -R 777 /var/www
+
 COPY --from=builder --chown=www-data:www-data /build/assets ./assets/
 COPY --from=builder --chown=www-data:www-data /build/bin ./bin/
 COPY --from=builder --chown=www-data:www-data /build/config ./config/
@@ -61,6 +63,8 @@ CMD ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisor/supervisord.conf"]
 USER www-data
 
 WORKDIR /var/www/html
+
+RUN chmod -R 777 /var/www
 
 COPY --from=builder --chown=www-data:www-data /build/assets ./assets/
 COPY --from=builder --chown=www-data:www-data /build/bin ./bin/
