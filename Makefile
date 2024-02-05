@@ -23,7 +23,7 @@ restart:
 	make data-migration
 
 cache:
-	docker exec -it cmp-app bin/console
+	docker exec  cmp-app bin/console
 
 cache-clear:
 	rm -rf var/cache/*
@@ -83,11 +83,11 @@ install:
 	make data-migration
 
 install-composer:
-	docker exec -it cmp-app composer install --no-interaction --no-ansi --prefer-dist --no-progress --optimize-autoloader
+	docker exec cmp-app composer install --no-interaction --no-ansi --prefer-dist --no-progress --optimize-autoloader
 
 install-assets:
-	docker exec -it cmp-app yarn install --no-progress --non-interactive
-	docker exec -it cmp-app yarn run encore prod
+	docker exec cmp-app yarn install --no-progress --non-interactive
+	docker exec cmp-app yarn run encore prod
 
 init:
 	make stop
@@ -98,10 +98,10 @@ init:
 
 data:
 	make data-migration
-	docker exec -it cmp-app bin/console doctrine:fixtures:load --no-interaction
+	docker exec cmp-app bin/console doctrine:fixtures:load --no-interaction
 
 data-migration:
-	docker exec -it cmp-app bin/console migrations:migrate --no-interaction
+	docker exec cmp-app bin/console migrations:migrate --no-interaction
 
 .PHONY: tests
 tests:
@@ -111,7 +111,7 @@ qa:
 	@echo "not implemented" >&2
 
 cs:
-	docker exec -it cmp-app ./vendor/bin/php-cs-fixer fix -v
+	docker exec cmp-app ./vendor/bin/php-cs-fixer fix -v
 
 coverage:
 	@echo "not implemented" >&2
