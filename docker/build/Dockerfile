@@ -15,6 +15,7 @@ RUN set -ex \
     && rm -rf var/mail-panel-mails \
     && rm -rf var/postgres-data \
     && rm -rf var/git-version \
+    && chmod -R 777 /var/www \
     # clear ./public/dist
     && rm -rf public/dist \
     # install composer (dev included)
@@ -50,6 +51,7 @@ USER root
 
 RUN apk add --update --no-cache supervisor \
     && mkdir -p /etc/supervisor/logs \
+    && chmod -R 777 /var/www \
     && chown www-data:www-data /etc/supervisor/logs
 
 COPY docker/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
